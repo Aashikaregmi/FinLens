@@ -1,0 +1,35 @@
+-- Create Database
+CREATE DATABASE IF NOT EXISTS expose_tracker;
+USE expose_tracker;
+
+-- USERS TABLE
+CREATE TABLE IF NOT EXISTS users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    full_name VARCHAR(100) NOT NULL,
+    email VARCHAR(100) NOT NULL UNIQUE,
+    password_hash VARCHAR(255) NOT NULL,
+    profile_image VARCHAR(255),
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+-- INCOME TABLE
+CREATE TABLE IF NOT EXISTS income (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    source VARCHAR(100) NOT NULL,
+    icon VARCHAR(255),
+    amount DECIMAL(10, 2) NOT NULL,
+    date DATETIME NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+);
+
+-- EXPENSE TABLE
+CREATE TABLE IF NOT EXISTS expense (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    category VARCHAR(100) NOT NULL,
+    icon VARCHAR(255),
+    amount DECIMAL(10, 2) NOT NULL,
+    date DATETIME NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+);
