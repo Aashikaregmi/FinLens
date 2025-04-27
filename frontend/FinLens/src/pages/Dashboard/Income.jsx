@@ -46,7 +46,7 @@ const Income = () => {
 
   //Handle Add Income API call
   const handleAddIncome = async(income) => {
-    console.log("handleAddIncome called with data:", income);
+    // console.log("handleAddIncome called with data:", income);
     const {source, amount, date, icon} = income;
 
     //Validation Checks
@@ -71,7 +71,7 @@ const Income = () => {
     }
 
     try{
-      console.log("Before axios.post");
+      // console.log("Before axios.post");
       await axiosInstance.post(API_PATHS.INCOME.ADD_INCOME, {
         source,
         amount,

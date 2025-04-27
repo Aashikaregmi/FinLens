@@ -9,13 +9,6 @@ const FinanceOverview = ({totalBalance, totalIncome, totalExpense}) => {
         {name : "Total Expense", amount: totalExpense},
         {name : "Total Income", amount: totalIncome},
     ];
-
-    //MOCK
-    // const balanceData = [
-    //     { name: "Total Balance", amount: 100000 },
-    //     { name: "Total Expenses", amount: 25000 },
-    //     { name: "Total Income", amount: 75000 },
-    //   ];
       
   return (
     <div className="card">
@@ -26,7 +19,6 @@ const FinanceOverview = ({totalBalance, totalIncome, totalExpense}) => {
         <CustomPieChart 
         data={balanceData}
         label="Total Balance"
-       //totalAmount = {`Rs.${totalBalance}`}
         totalAmount = {totalBalance}
         colors={COLORS}
         showTextAnchor={true}

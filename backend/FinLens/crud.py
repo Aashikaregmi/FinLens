@@ -33,7 +33,6 @@ def create_income(db: Session, income: IncomeCreate, user_id: int):
         date=income.date,
         icon=income.icon,
         user_id=user_id,
-        # category=income.category, # Only include if your table has it
     )
     db.add(db_income)
     db.commit()
@@ -80,7 +79,6 @@ def create_expense(db: Session, expense: ExpenseCreate, user_id: int):
         date=expense.date,
         icon=expense.icon,
         user_id=user_id,
-        # description=expense.description, # Only include if your table has it
     )
     db.add(db_expense)
     db.commit()

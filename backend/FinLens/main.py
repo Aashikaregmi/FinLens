@@ -5,7 +5,7 @@ from database import Base, engine
 from routers import auth_routes, income_routes, expense_routes, dashboard_routes
 from dependencies import get_current_user
 from schemas import UserResponse
-import os  # ADDED
+import os
 
 Base.metadata.create_all(bind=engine)
 

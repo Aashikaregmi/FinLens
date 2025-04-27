@@ -1,6 +1,6 @@
 import React from 'react';
+import { LuTrendingUpDown } from "react-icons/lu";
 import img1 from "../../assets/images/img1.png";
-import { LuTrendingUpDown } from "react-icons/lu"; // Make sure this gives you a valid path
 
 
 const AuthLayout = ({children}) => {

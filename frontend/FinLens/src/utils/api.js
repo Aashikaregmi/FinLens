@@ -41,11 +41,9 @@ api.interceptors.response.use(
                 window.location.href = "/login";
             } else if (error.response.status === 500) {
                 console.error("Server error :( Please try again later.");
-                // Optionally, you could dispatch an action to show a user-friendly message
             }
         } else if (error.code === "ECONNABORTED") {
-            console.error("Request timeout. Please try again.");
-            // Optionally, you could dispatch an action to show a user-friendly message
+            console.error("Request timeout. Please try again."); 
         }
         return Promise.reject(error);
     }

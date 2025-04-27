@@ -42,6 +42,7 @@ const SignUp = () => {
         formData.append('profile_image', profilePic);
       }
 
+      //many consoles to check, to be removed after final implementation
       console.log('FormData:', formData.get('full_name'), formData.get('email'), formData.get('password'), formData.get('profile_image'));
       console.log('Calling register API...');
       const response = await register(formData);

@@ -23,7 +23,7 @@ const ExpenseList = ({transactions, onDelete, onDownload}) => {
                     amount={expense.amount}
                     type="expense"
                     onDelete={() => {
-                        console.log("Deleting expense with ID:", expense.id); // Debugging log
+                        // console.log("Deleting expense with ID:", expense.id); // Debugging log
                         onDelete(expense.id);
                     }}
                 />

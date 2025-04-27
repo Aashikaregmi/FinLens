@@ -2,8 +2,8 @@ import React, { useContext, useState } from 'react';
 import { Link, useNavigate } from "react-router-dom";
 import Input from '../../components/Inputs/Input';
 import AuthLayout from '../../components/layouts/AuthLayout';
-import { UserContext } from '../../context/UserContext'; // Import UserContext
-import { getUserInfo, login } from '../../utils/api'; // Import API calls
+import { UserContext } from '../../context/UserContext';
+import { getUserInfo, login } from '../../utils/api';
 import { validateEmail } from '../../utils/helper';
 
 const Login = () => {
@@ -33,7 +33,7 @@ const Login = () => {
       formData.append('username', email); // Use 'username' as the key
       formData.append('password', password);
 
-      console.log('Calling login API...', formData.get('username'), formData.get('password'));
+      // console.log('Calling login API...', formData.get('username'), formData.get('password'));
       const response = await login(formData);
       console.log('Login API response:', response.data);
 
@@ -41,7 +41,7 @@ const Login = () => {
       localStorage.setItem("token", response.data.access_token);
 
       // Fetch user info after successful login
-      console.log('Fetching user info...');
+      // console.log('Fetching user info...');
       const userInfoResponse = await getUserInfo();
       console.log('User info response:', userInfoResponse.data);
 

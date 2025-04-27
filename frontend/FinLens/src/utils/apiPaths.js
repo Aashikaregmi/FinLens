@@ -10,8 +10,8 @@ export const API_PATHS = {
       GET_DATA: "/dashboard",
     },
     INCOME: {
-      ADD_INCOME: "/income/", // Changed to just "/income/" for POST
-      GET_ALL_INCOME: "/income/", // Changed to just "/income/" for GET all
+      ADD_INCOME: "/income/", 
+      GET_ALL_INCOME: "/income/", 
       DELETE_INCOME: (incomeId) => `/income/${incomeId}`,
       DOWNLOAD_INCOME: "/income/download",
     },

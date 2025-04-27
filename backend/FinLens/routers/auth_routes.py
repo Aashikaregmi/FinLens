@@ -40,9 +40,7 @@ async def register(
                 )
 
             unique_filename = f"{uuid.uuid4().hex}.{file_extension}"
-            upload_dir = (
-                "static/profile_images"  # Ensure this directory exists in your backend
-            )
+            upload_dir = "static/profile_images"  # directory ti store uploaded images
             os.makedirs(upload_dir, exist_ok=True)
             file_path = os.path.join(upload_dir, unique_filename)
 
