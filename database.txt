@@ -1,6 +1,6 @@
 -- Create Database
-CREATE DATABASE IF NOT EXISTS expose_tracker;
-USE expose_tracker;
+CREATE DATABASE IF NOT EXISTS FinLens;
+USE FinLens;
 
 -- USERS TABLE
 CREATE TABLE IF NOT EXISTS users (
