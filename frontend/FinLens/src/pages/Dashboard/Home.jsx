@@ -1,23 +1,23 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import InfoCard from '../../components/Cards/InfoCard';
 import DashboardLayout from '../../components/layouts/DashboardLayout';
 import { useUserAuth } from '../../hooks/useUserAuth';
-import { useNavigate } from 'react-router-dom';
-import axiosInstance from '../../utils/axiosInstance';
 import { API_PATHS } from '../../utils/apiPaths';
-import InfoCard from '../../components/Cards/InfoCard';
+import axiosInstance from '../../utils/axiosInstance';
 
-import {LuHandCoins, LuWalletMinimal } from "react-icons/lu";
 import { IoMdCard } from "react-icons/io";
-import { addThousandsSeperator } from '../../utils/helper';
-import RecentTransactions from '../../components/Dashboard/RecentTransactions';
-import FinanceOverview from '../../components/Dashboard/FinanceOverview';
+import { LuHandCoins, LuWalletMinimal } from "react-icons/lu";
 import ExpenseTransactions from '../../components/Dashboard/ExpenseTransactions';
+import FinanceOverview from '../../components/Dashboard/FinanceOverview';
 import Last30DaysExpenses from '../../components/Dashboard/Last30DaysExpenses';
-import RecentIncomeWithChart from '../../components/Dashboard/RecentIncomeWithChart';
 import RecentIncome from '../../components/Dashboard/RecentIncome';
+import RecentIncomeWithChart from '../../components/Dashboard/RecentIncomeWithChart';
+import RecentTransactions from '../../components/Dashboard/RecentTransactions';
+import { addThousandsSeperator } from '../../utils/helper';
 
 //MOCK DATA FILE
-import { dashboardMockData } from '../../mock/mockData';
+// import { dashboardMockData } from '../../mock/mockData';
 
 
 const Home = () => {
@@ -51,10 +51,10 @@ const Home = () => {
 
   useEffect(() => {
     //Uncomment after implementing API
-    // fetchDashboardData();
+    fetchDashboardData();
 
     // MOCK DATA from ../../mock/mockData'
-    setDashboardData(dashboardMockData);
+    // setDashboardData(dashboardMockData);
 
     return () => {};
   }, []);

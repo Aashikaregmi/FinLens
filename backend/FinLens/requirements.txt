@@ -1,0 +1,13 @@
+fastapi
+uvicorn
+sqlalchemy
+pydantic
+passlib
+bcrypt
+python-jose
+python-multipart
+mysql-connector-python>=8.0.0
+python-dotenv
+alembic
+pandas
+openpyxl

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import Input from '../Inputs/Input';
 import EmojiPickerPopup from '../EmojiPickerPopup';
+import Input from '../Inputs/Input';
 
 const AddIncomeForm = ({onAddIncome}) => {
     const [income, setIncome] = useState({
@@ -46,7 +46,11 @@ const AddIncomeForm = ({onAddIncome}) => {
      <button
       type='button'
       className='add-btn add-btn-fill'
-      onClick={() => onAddIncome(income)}
+      onClick={() => {
+        console.log("Data from AddIncomeForm:", income);
+        console.log("Date value in state:", income.date);
+        onAddIncome(income);
+      }}
      >
       Add Income
      </button>

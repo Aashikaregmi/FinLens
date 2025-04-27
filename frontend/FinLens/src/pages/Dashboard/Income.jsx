@@ -1,15 +1,14 @@
-import React, { useEffect, useState } from 'react'
-import DashboardLayout from '../../components/layouts/DashboardLayout'
-import IncomeOverview from '../../components/Income/IncomeOverview';
-import axiosInstance from '../../utils/axiosInstance';
-import { API_PATHS } from '../../utils/apiPaths';
-import { incomeMockData } from '../../mock/mockData';
-import Modal from '../../components/Modal';
-import AddIncomeForm from '../../components/Income/AddIncomeForm';
-import { toast } from 'react-toastify';
-import IncomeList from '../../components/Income/IncomeList';
+import React, { useEffect, useState } from 'react';
+import { toast } from 'react-hot-toast';
 import DeleteAlert from '../../components/DeleteAlert';
+import AddIncomeForm from '../../components/Income/AddIncomeForm';
+import IncomeList from '../../components/Income/IncomeList';
+import IncomeOverview from '../../components/Income/IncomeOverview';
+import DashboardLayout from '../../components/layouts/DashboardLayout';
+import Modal from '../../components/Modal';
 import { useUserAuth } from '../../hooks/useUserAuth';
+import { API_PATHS } from '../../utils/apiPaths';
+import axiosInstance from '../../utils/axiosInstance';
 
 
 const Income = () => {
@@ -47,6 +46,7 @@ const Income = () => {
 
   //Handle Add Income API call
   const handleAddIncome = async(income) => {
+    console.log("handleAddIncome called with data:", income);
     const {source, amount, date, icon} = income;
 
     //Validation Checks
@@ -62,11 +62,16 @@ const Income = () => {
     }
 
     if(!date){
-      toast.error("Date is required");
+      if(!date){
+        toast.error("Date is required.");
+        await new Promise(resolve => setTimeout(resolve, 10)); 
+        return;
+      }
       return;
     }
 
     try{
+      console.log("Before axios.post");
       await axiosInstance.post(API_PATHS.INCOME.ADD_INCOME, {
         source,
         amount,
@@ -127,10 +132,10 @@ const Income = () => {
 
   useEffect(() => {
     //Uncomment after implementing API Call!
-    //fetchIncomeDetails(); 
+    fetchIncomeDetails(); 
 
     //MOCK DATA from ../../mock/mockData'
-    setIncomeData(incomeMockData);
+    // setIncomeData(incomeMockData);
   
     return () => {}
   }, []);

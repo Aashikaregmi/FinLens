@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import { useUserAuth } from '../../hooks/useUserAuth';
-import DashboardLayout from '../../components/layouts/DashboardLayout';
-import { toast } from 'react-toastify';
-import { API_PATHS } from '../../utils/apiPaths';
-import axiosInstance from '../../utils/axiosInstance';
-import ExpenseOverview from '../../components/Expense/ExpenseOverview';
-import { expenseMockData } from '../../mock/mockData';
-import Modal from '../../components/Modal';
+import { toast } from 'react-hot-toast';
+import DeleteAlert from '../../components/DeleteAlert';
 import AddExpenseForm from '../../components/Expense/AddExpenseForm';
 import ExpenseList from '../../components/Expense/ExpenseList';
-import DeleteAlert from '../../components/DeleteAlert';
+import ExpenseOverview from '../../components/Expense/ExpenseOverview';
+import DashboardLayout from '../../components/layouts/DashboardLayout';
+import Modal from '../../components/Modal';
+import { useUserAuth } from '../../hooks/useUserAuth';
+import { API_PATHS } from '../../utils/apiPaths';
+import axiosInstance from '../../utils/axiosInstance';
 
 const Expense = () => {
   useUserAuth();
@@ -20,7 +19,7 @@ const Expense = () => {
       show: false,
       data: null,
     });
-  
+
     const[openAddExpenseModal, setOpenAddExpenseModal] = useState(false);
 
   //Get All Expense Details
@@ -31,16 +30,16 @@ const Expense = () => {
 
     try{
       //MOCK data from mock.js
-      setExpenseData(expenseMockData);
+      // setExpenseData(expenseMockData);
 
       //UNCOMMENT AFTER API CALL ESTABILISHED
-      // const response = await axiosInstance.get(
-      //   `${API_PATHS.EXPENSE.GET_ALL_EXPENSE}`
-      // );
+      const response = await axiosInstance.get(
+        `${API_PATHS.EXPENSE.GET_ALL_EXPENSE}`
+      );
 
-      // if(response.data){
-      //   setExpenseData(response.data);
-      // }
+      if(response.data){
+        setExpenseData(response.data);
+      }
     }catch(error){
       console.log("Something went wrong :( . Please try again", error)
     }finally{
@@ -91,6 +90,8 @@ const Expense = () => {
   //Delete Expense
   const deleteExpense = async(id) => {
     try{
+      const deleteUrl = API_PATHS.EXPENSE.DELETE_EXPENSE(id);
+      console.log("Attempting to delete expense at URL:", deleteUrl);  
       await axiosInstance.delete(API_PATHS.EXPENSE.DELETE_EXPENSE(id));
 
       setOpenDeleteAlert({show: false, data: null});
@@ -104,7 +105,7 @@ const Expense = () => {
     }
   };
 
-  //handle download Expense details 
+  //handle download Expense details
   const handleDownloadExpenseDetails = async () => {
     try{
       const response = await axiosInstance.get(
@@ -142,11 +143,11 @@ const Expense = () => {
           <div className="">
             <ExpenseOverview
             transactions = {expenseData}
-            onExpenseExpense={() => setOpenAddExpenseModal(true)}
+            onAddExpenseClick={() => setOpenAddExpenseModal(true)} 
             />
           </div>
 
-          <ExpenseList 
+          <ExpenseList
             transactions={expenseData}
             onDelete={(id) => {
               setOpenDeleteAlert({show: true, data: id});
@@ -168,7 +169,7 @@ const Expense = () => {
         onClose={()=>setOpenDeleteAlert({show: false, data:null })}
         title="Delete Expense"
         >
-          <DeleteAlert 
+          <DeleteAlert
             content="Are you sure you want to delete this expense detail ?"
             onDelete={()=> deleteExpense(openDeleteAlert.data)}
           />
