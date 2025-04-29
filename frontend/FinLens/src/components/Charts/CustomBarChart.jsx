@@ -17,15 +17,23 @@ const CustomBarChart = ({ data }) => {
 
     const BarTooltip = ({ active, payload }) => {
         if (active && payload.length) {
+            const dataPoint = payload[0].payload;
             return (
                 <div className="bg-white shadow-md rounded-lg p-2 border border-gray-300">
-                    
+
                     <p className="text-sm text-gray-600">
-                        Amount: <span className="text-sm font-medium text-gray-900">Rs.{payload[0].payload.amount}</span>
+                        Amount: <span className="text-sm font-medium text-gray-900">Rs.{dataPoint.amount}</span>
                     </p>
-                    <p className="text-sm text-gray-600">
-                        Source: <span className="text-sm font-medium text-gray-900">{payload[0].payload.source}</span> 
-                    </p>
+                    {dataPoint.source && (
+                        <p className="text-sm text-gray-600">
+                            Source: <span className="text-sm font-medium text-gray-900">{dataPoint.source}</span>
+                        </p>
+                    )}
+                    {dataPoint.category && (
+                        <p className="text-sm text-gray-600">
+                            Category: <span className="text-sm font-medium text-gray-900">{dataPoint.category}</span>
+                        </p>
+                    )}
                 </div>
             );
         }
@@ -38,11 +46,10 @@ const CustomBarChart = ({ data }) => {
                 <BarChart data={data}>
                     <CartesianGrid stroke="none" />
 
-                    <XAxis dataKey="month" tick={{ fontSize: 12, fill: "#555" }} stroke="none" />
+                    <XAxis dataKey="month" tick={{ fontSize: 12, fill: "#555" }} stroke="none" /> 
                     <YAxis tick={{ fontSize: 12, fill: "#555" }} stroke="none" />
 
                     <Tooltip content={BarTooltip} />
-
 
                     <Bar
                         dataKey="amount"

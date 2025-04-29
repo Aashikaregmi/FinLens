@@ -5,6 +5,25 @@ export const validateEmail = (email) => {
     return regex.test(email);
 };
 
+export const validatePassword = (password) => {
+    if (!password) {
+      return "Please enter the password";
+    }
+    if (password.length < 6) {
+      return 'Password must be at least 6 characters long.';
+    }
+    if (!/[a-z]/.test(password)) {
+      return 'Password must contain at least one lowercase letter.';
+    }
+    if (!/[A-Z]/.test(password)) {
+      return 'Password must contain at least one uppercase letter.';
+    }
+    if (!/[0-9]/.test(password)) {
+      return 'Password must contain at least one number.';
+    }
+    return ''; // Return an empty string if the password is valid
+};
+
 //Utility to extract initials from a name
 export const getInitials = (name) => {
     if(!name) return "";
@@ -22,7 +41,7 @@ export const getInitials = (name) => {
 
 //Utility to seprate place values from amounts
 export const addThousandsSeperator = (num) => {
-    
+
   const value = parseFloat(num).toFixed(2);
   const [integerPart, fractionalPart] = value.split(".");
 

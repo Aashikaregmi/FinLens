@@ -78,7 +78,12 @@ def get_dashboard_data(
     )
     last_30_days_expenses_data = {
         "transactions": [
-            {"category": exp.category, "amount": float(exp.amount), "date": exp.date}
+            {
+                "category": exp.category,
+                "amount": float(exp.amount),
+                "date": exp.date,
+                "icon": exp.icon,
+            }  # Include icon here
             for exp in last_30_days_expenses
         ]
     }
@@ -93,7 +98,12 @@ def get_dashboard_data(
     )
     last_60_days_income_data = {
         "transactions": [
-            {"source": inc.source, "amount": float(inc.amount), "date": inc.date}
+            {
+                "source": inc.source,
+                "amount": float(inc.amount),
+                "date": inc.date,
+                "icon": inc.icon,
+            }  # Include icon here
             for inc in last_60_days_income
         ]
     }

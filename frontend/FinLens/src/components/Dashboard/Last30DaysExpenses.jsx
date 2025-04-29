@@ -1,16 +1,16 @@
-import React, { useState } from 'react'
-import { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { prepareExpenseBarChartData } from '../../utils/helper';
 import CustomBarChart from '../Charts/CustomBarChart';
 
 const Last30DaysExpenses = ({data}) => {
+  // console.log("Data prop received in Last30Days:", data);
     const[chartData, setChartData] = useState([]);
     useEffect(() => {
         const result = prepareExpenseBarChartData(data);
+        // console.log("Result of prepareExpenseBarChartData:", result); // Log the result
         setChartData(result);
+    }, [data]);
 
-        return () => {};
-    }, [data])
   return (
     <div className="card col-span-1">
         <div className="flex items-center justify-between">

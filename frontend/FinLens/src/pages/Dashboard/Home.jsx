@@ -102,6 +102,7 @@ const Home = () => {
               />
               )}
             
+            {console.log("Data being passed to Last30Days:", dashboardData?.last30DaysExpenses?.transactions)}
               <Last30DaysExpenses
                 data={dashboardData?.last30DaysExpenses?.transactions || []}
                 

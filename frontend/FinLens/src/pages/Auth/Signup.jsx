@@ -5,7 +5,7 @@ import Input from '../../components/Inputs/Input';
 import ProfilePhotoSelector from '../../components/Inputs/ProfilePhotoSelector';
 import AuthLayout from '../../components/layouts/AuthLayout';
 import { register } from '../../utils/api';
-import { validateEmail } from '../../utils/helper';
+import { validateEmail, validatePassword } from '../../utils/helper'; // Import validatePassword
 
 const SignUp = () => {
   const [profilePic, setProfilePic] = useState(null);
@@ -28,8 +28,10 @@ const SignUp = () => {
       setError("Please enter a valid email address.");
       return;
     }
-    if (!password) {
-      setError("Please enter the password");
+
+    const passwordError = validatePassword(password);
+    if (passwordError) {
+      setError(passwordError);
       return;
     }
 
