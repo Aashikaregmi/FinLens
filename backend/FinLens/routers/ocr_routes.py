@@ -12,7 +12,7 @@ import logging
 from dependencies import get_db, get_current_user
 from models import User
 from schemas import OCRResponse
-import utils  # Import your utils.py file
+import utils
 
 # Setup logger
 logger = logging.getLogger(__name__)
@@ -26,7 +26,7 @@ if not logger.handlers:
     ch.setFormatter(formatter)
     logger.addHandler(ch)
 
-router = APIRouter(prefix="/ocr", tags=["OCR"])  # Adjusted to match your API versioning
+router = APIRouter(prefix="/ocr", tags=["OCR"])
 
 
 @router.post("/scan-receipt", response_model=OCRResponse)

@@ -3,13 +3,13 @@ from sqlalchemy.orm import Session
 from typing import List
 from sqlalchemy import func
 from datetime import datetime
-from decimal import Decimal  # Add this import
+from decimal import Decimal
 
 from dependencies import get_db, get_current_user
 from models import Budget, Expense, User
 from schemas import BudgetCreate, BudgetResponse, BudgetAlert
 
-router = APIRouter(tags=["Budget"])  # Remove the prefix
+router = APIRouter(tags=["Budget"])
 
 
 @router.post("/budget/set", response_model=BudgetResponse)
