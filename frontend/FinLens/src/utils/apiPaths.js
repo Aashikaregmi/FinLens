@@ -24,5 +24,14 @@ export const API_PATHS = {
     IMAGE: {
       UPLOAD_IMAGE: "/auth/upload-image",
     },
+    OCR: {
+      SCAN_RECEIPT: '/ocr/scan-receipt',
+    },
+    
+    BUDGET: {
+      SET_BUDGET: '/budget/set',
+      GET_ALL_BUDGETS: '/budget/all',
+      GET_ALERTS: '/budget/alerts',
+    },
   };
   

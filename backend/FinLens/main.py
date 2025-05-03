@@ -2,7 +2,14 @@ from fastapi import FastAPI, Depends
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from database import Base, engine
-from routers import auth_routes, income_routes, expense_routes, dashboard_routes
+from routers import (
+    auth_routes,
+    income_routes,
+    expense_routes,
+    dashboard_routes,
+    ocr_routes,
+    budget_routes,
+)
 from dependencies import get_current_user
 from schemas import UserResponse
 import os
@@ -33,6 +40,8 @@ app.include_router(auth_routes.router, prefix="/api/v1/auth")
 app.include_router(dashboard_routes.router, prefix="/api/v1")
 app.include_router(income_routes.router, prefix="/api/v1")
 app.include_router(expense_routes.router, prefix="/api/v1")
+app.include_router(budget_routes.router, prefix="/api/v1")
+app.include_router(ocr_routes.router, prefix="/api/v1")
 
 
 # Protected route to get current user

@@ -15,6 +15,7 @@ class User(Base):
 
     income = relationship("Income", back_populates="owner", cascade="all, delete")
     expense = relationship("Expense", back_populates="owner", cascade="all, delete")
+    budget = relationship("Budget", back_populates="owner", cascade="all, delete")
 
 
 class Income(Base):
@@ -39,3 +40,16 @@ class Expense(Base):
     date = Column(DateTime)
 
     owner = relationship("User", back_populates="expense")
+
+
+class Budget(Base):
+    __tablename__ = "budget"
+    id = Column(Integer, primary_key=True, index=True)
+    user_id = Column(Integer, ForeignKey("users.id"))
+    category = Column(String(100))
+    icon = Column(String(255), nullable=True)
+    amount = Column(DECIMAL(10, 2))
+    created_at = Column(DateTime, default=datetime.utcnow)
+    updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
+
+    owner = relationship("User", back_populates="budget")
